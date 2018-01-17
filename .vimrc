@@ -36,7 +36,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
  NeoBundle 'taglist.vim'
  "NeoBundle 'Townk/vim-autoclose'
  NeoBundle 'tpope/vim-fugitive'
- NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'Valloric/YouCompleteMe'
  NeoBundle 'brookhong/cscope.vim'
  NeoBundle 'wesleyche/SrcExpl' 
 
@@ -81,7 +81,15 @@ endif
  set ignorecase
  set ls=2
  set fileformats=dos,unix
-  
+
+ " High light unwanted spaces in end of line
+  highlight ExtraWhitespace ctermbg=darkred guibg=darkcyan
+  autocmd BufEnter * if &ft != 'help' | match ExtraWhitespace /\s\+$/ | endif
+  autocmd BufEnter * if &ft == 'help' | match none /\s\+$/ | endif
+
+ "background transparent
+ hi Normal ctermfg=252 ctermbg=none
+
  " show :tabe file name
  set wildmenu
 
